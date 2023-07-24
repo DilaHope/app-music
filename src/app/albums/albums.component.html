@@ -28,18 +28,17 @@
 
 
 <div class="tr0" style="display: flex;;column-gap: 1.5rem;">
-    
-    <div class="col-sm-4" style="width:35%;" >
+
+
+    <div class="col-sm-4" style="width:35%;">
         <!-- AlbumDetails communication parent vers enfant -->
         <app-album-details [album]="selectedAlbum"></app-album-details>
     </div>
-    
+
     <div class="tr">
-    
-    
-    
+
         <h1 class="fw-semibold pt-">{{ titlePage }}</h1>
-    
+
         <div class="card my-2 fw-semibold" *ngFor="let album of albums">
             <div class="card-header">
                 Pop
@@ -47,17 +46,19 @@
             <div class="card-body">
                 <h5 class="card-title">{{album.title}}</h5>
                 <p class="card-text ">{{album.description}} <br> <br>
-                    <a class="btn btn-info mx-1" href="#" role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br> <br>
-                    <a class="btn btn-outline-danger" href="#" role="button">en</a>
-    
+                    <a class="btn btn-info mx-1"  role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br>
+                    <br>
+                    <a class="btn btn-outline-danger"   role="button">en</a>
+
                     <img class="glyph-icon ms-2  btn-danger" src="./assets/svg/si-glyph-heart.svg" width="15" />
                     <small class=" ms-1">{{album.like}}</small>
                     <img class="glyph-icon mx-1" src="./assets/svg/si-glyph-timer.svg" width="15" />
                     <small>{{album.duration}} min</small> <br><br>
-                    <a class="btn btn-danger" href="#" role="button" >Afficher</a>
+                    <a class="btn btn-danger" (click)="onSelect(album)"  role="button">Afficher</a>
             </div>
         </div>
-    
-    
+
+
     </div>
+
 </div>

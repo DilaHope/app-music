@@ -14,4 +14,9 @@ export class Album {
     ){}
 }
 
-export class List {}
+export class List {
+  constructor(
+    ){}
+    "id": string;
+    "Tab": Array<string>;
+}
