@@ -1,63 +1,42 @@
-<!-- <p>albums works!</p> -->
-
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary my-5 fw-semibold">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">{{ title }}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Se connecter</a>
-                </li>
-
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
 
 <div class="tr0" style="display: flex;;column-gap: 1.5rem;">
 
 
     <div class="col-sm-4" style="width:35%;">
         <!-- AlbumDetails communication parent vers enfant -->
-        <app-album-details [album]="selectedAlbum"></app-album-details>
+        <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
     </div>
 
     <div class="tr">
 
         <h1 class="fw-semibold pt-">{{ titlePage }}</h1>
 
-        <div class="card my-2 fw-semibold" *ngFor="let album of albums">
-            <div class="card-header">
-                Pop
+        <ng-container *ngIf="albums&&albums.length; else notfound">
+            <div class="card my-2 fw-semibold" *ngFor="let album of albums let i=index ;">
+                <div class="card-header">
+                    Pop <span *ngIf="status === album.id" >[play]</span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" ><a routerLink="/album/{{album.id}}">{{album.title}}</a></h5>
+                    <p class="card-text ">{{album.description}} <br> <br>
+                        <!-- <a class="btn btn-info mx-1"  role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br> -->
+                        <br>
+                        <a class="btn btn-outline-danger"   role="button">en</a>
+                        <img class="glyph-icon ms-2  btn-danger" src="./assets/svg/si-glyph-heart.svg" width="15" />
+                        <small class=" ms-1">{{album.like}}</small>
+                        <img class="glyph-icon mx-1" src="./assets/svg/si-glyph-timer.svg" width="15" />
+                        <small>{{album.duration}} min</small> 
+                        <a class="btn btn-danger  mx-1" (click)="onSelect(album)" type="submit" role="button">Afficher</a>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{album.title}}</h5>
-                <p class="card-text ">{{album.description}} <br> <br>
-                    <a class="btn btn-info mx-1"  role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br>
-                    <br>
-                    <a class="btn btn-outline-danger"   role="button">en</a>
-
-                    <img class="glyph-icon ms-2  btn-danger" src="./assets/svg/si-glyph-heart.svg" width="15" />
-                    <small class=" ms-1">{{album.like}}</small>
-                    <img class="glyph-icon mx-1" src="./assets/svg/si-glyph-timer.svg" width="15" />
-                    <small>{{album.duration}} min</small> <br><br>
-                    <a class="btn btn-danger" (click)="onSelect(album)"  role="button">Afficher</a>
-            </div>
-        </div>
-
+        </ng-container>
+           <ng-template #notfound>
+               <div class="card">
+                <div class="card-body text-center">
+               <p class="card-text fs-4">404 NOT FOUND 😴</p>
+                </div>
+               </div>
+           </ng-template>
 
     </div>
 

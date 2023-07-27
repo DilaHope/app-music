@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Album } from '../album';
 import { ALBUM_LISTS} from '../mock-albums'
 
@@ -7,37 +7,47 @@ import { ALBUM_LISTS} from '../mock-albums'
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.css']
 })
-export class AlbumDetailsComponent implements OnInit{
-  Tabs: Array<string> = [];
-  @Input() album!: Album;
+export class AlbumDetailsComponent implements OnInit, OnChanges {
+  @Input() album!: Album; // propriété liée qui sera passée par le parent à l enfant tres important
+  @Output() onPlay: EventEmitter<Album>=new EventEmitter(); //propriete emetrice
   
   constructor() { };
-
-  onSelect(album:Album){
-     
-    // console.log(this.selectedAlbum)
-    // console.log("bonjour");
-
-    let Tabs: Array<string> = [];
-      if(album!== undefined){
-        for (let i = 0; i < ALBUM_LISTS.length; i++) {
-          if( ALBUM_LISTS[i].id === album.id){
-            this.Tabs =  ALBUM_LISTS[i].list;
-            console.log(this.Tabs);
   
-          for (let e = 0; e <  this.Tabs.length; e++) {
-            
-            console.log(this.Tabs[e]);
-          }
-          }
+  Tabs: Array<string> = [];
+  
+  ngOnChanges():void {
+    //1first methode
+    if(this.album!== undefined){
+      for (let i = 0; i < ALBUM_LISTS.length; i++) {
+        if( ALBUM_LISTS[i].id === this.album.id){
+          this.Tabs =  ALBUM_LISTS[i].list;
         }
-        console.log(this.Tabs);
-      }else{console.log("vous n'avez encore de playlist qui match")}
-    };
-   
+      }
+      
+    }
 
-  ngOnInit() {
-  console.log(this.album); // pour l'instant c'est undefined ... C'est normal
+ //2first methode
+//  albumLists: List[]=ALBUM_LISTS;
+//  songs:string[] | undefined=[];// tableau qui stock la liste des chansons de l'abum
+//  if(this.album){
+//   this.songs=this.albumLists.find(elem =>elem.id === this.album.id)?.list; // tres important une maniere de parcourir un tableau pour et renvoye les elements cibles
+//  }
+  }
+
+  ngOnInit():void  {
+  // console.log(this.album); // pour l'instant c'est undefined ... C'est normal
   }
    
+
+  play(album:Album){
+    console.log("Jouer l'album", album.name);
+    this.onPlay.emit(album) ;//émettre un album vers le parent
+  }
+
+   Aleatoire(Tabs:string[]=[]){
+    const alea =this.Tabs;
+     
+  console.log(alea);
+  
+   }
 }

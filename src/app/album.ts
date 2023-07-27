@@ -1,5 +1,5 @@
 export class Album {
-
+    
     constructor(
       public id: string,
       public ref: string,
@@ -14,9 +14,11 @@ export class Album {
     ){}
 }
 
-export class List {
-  constructor(
-    ){}
-    "id": string;
-    "Tab": Array<string>;
+export interface List {
+ id: string;
+ list: Array<string>;
+}
+
+export interface SortAlbumCallback{
+  (a:Album,b:Album):number;
 }
