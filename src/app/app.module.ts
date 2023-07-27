@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router'; // module des routes et classe de Typage
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
@@ -11,6 +11,9 @@ import { SearchComponent } from './search/search.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PaginateComponent } from './paginate/paginate.component';
+import { OpenCloseComponent } from './open-close/open-close.component';
+ 
 
 
 // définission de la constante pour les routes
@@ -33,6 +36,8 @@ const albumsRoutes: Routes = [
   path: 'album/:id',
   component: AlbumDescriptionComponent
   },
+  
+   
 
   // une chose qu'on fait à la fin des routes , on crée un path qui sera une page 404 note found
   {path:'**' , component: PageNotFoundComponent},
@@ -47,15 +52,20 @@ const albumsRoutes: Routes = [
     SearchComponent,
     AlbumDescriptionComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PaginateComponent,
+    OpenCloseComponent,
+ 
   ],
   imports: [
     BrowserModule,
     FormsModule, // importez le module
     //   forRout est une méthode utilisé pour définir les routes à  utiliser dans le modele de routage
-    RouterModule.forRoot(albumsRoutes) // chargement des routes dans l'application
+    RouterModule.forRoot(albumsRoutes), // chargement des routes dans l'application
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

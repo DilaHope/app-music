@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Album } from '../album';
-import { ALBUM_LISTS} from '../mock-albums'
+import { fadeInAnimation } from '../animation.module';
+import { ALBUM_LISTS} from '../mock-albums';
+
 
 @Component({
   selector: 'app-album-details',
   templateUrl: './album-details.component.html',
-  styleUrls: ['./album-details.component.css']
+  styleUrls: ['./album-details.component.css'],
+  animations: [fadeInAnimation],
 })
 export class AlbumDetailsComponent implements OnInit, OnChanges {
   @Input() album!: Album; // propriété liée qui sera passée par le parent à l enfant tres important

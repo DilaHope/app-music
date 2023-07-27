@@ -1,18 +1,18 @@
 <p>album-description works!</p>
 <div class="card" *ngIf="album">
     <div class="card-header">
-        Featuresd
+        Featured
     </div>
     <div class="card-body">
         <h5 class="card-title">{{album.title}}</h5>
         <h6>Name: {{album.name}} </h6>
         <p class="card-text"> {{album.description}} </p>
         <p>Duration: {{album.duration || 0}} min </p>
-        <p>Like: {{album.like || 'Pas de Likes'}} min </p>
-        <!-- <ul *ngIf="album.tags" class="list-inline">
+        <p>Like: {{album.like || 'Pas de Likes'}}</p>
+        <ul *ngIf="album.tags" class="list-inline">
             <li class="list-inline-item" *ngFor="let tag of album.tags"></li>
-            <span class="badge bg-secondary"> {{tag}} </span>
-        </ul> -->
-        <img src=" {{album.url}} " width="300">
+          <a class="btn btn-info mx-1"  role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br>
+        </ul>
+        <img src="{{album.url}}" width="300">
     </div>
 </div>

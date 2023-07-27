@@ -5,13 +5,15 @@ import { Component, OnInit } from '@angular/core';
 import { Album } from '../album';
 import { AlbumDetailsComponent } from '../album-details/album-details.component';
 import { AlbumService } from '../album.service';
+import { fadeInAnimation } from '../animation.module';
 import { ALBUMS } from '../mock-albums';
  
 
 @Component({
   selector: 'app-albums',  // sélecteur à mettre dans le parent
   templateUrl: './albums.component.html',
-  styleUrls: ['./albums.component.css']
+  styleUrls: ['./albums.component.css'],
+  animations:[fadeInAnimation],
 })
 export class AlbumsComponent implements OnInit ,OnInit{
 
