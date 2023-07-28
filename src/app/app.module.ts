@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PaginateComponent } from './paginate/paginate.component';
 import { OpenCloseComponent } from './open-close/open-close.component';
  
+ 
 
 
 // définission de la constante pour les routes
@@ -36,6 +37,10 @@ const albumsRoutes: Routes = [
   path: 'album/:id',
   component: AlbumDescriptionComponent
   },
+  {
+  path: 'oc',
+  component: OpenCloseComponent
+  },
   
    
 
@@ -55,6 +60,7 @@ const albumsRoutes: Routes = [
     PageNotFoundComponent,
     PaginateComponent,
     OpenCloseComponent,
+      
  
   ],
   imports: [
