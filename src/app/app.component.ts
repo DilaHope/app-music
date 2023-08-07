@@ -30,8 +30,14 @@ export class AppComponent implements OnInit {
       this.count = time;
     });
   }
+  
   format ( num : number):string {
     return(num < 10 ? '0' : '') + num;
+  }
+
+  parentReceive($event:string | undefined){
+    this.receivedText = $event;
+    console.log('parent :' + $event)
   }
 }
 
