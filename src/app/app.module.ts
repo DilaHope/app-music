@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router'; // module des routes et classe de Typage
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
@@ -15,40 +13,12 @@ import { PaginateComponent } from './paginate/paginate.component';
 import { OpenCloseComponent } from './open-close/open-close.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import{HttpClientModule}from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { AdminModule } from './admin/admin.module';
  
- 
 
 
-// définission de la constante pour les routes
-// on n'utilise jamais de chemin relative(../alr ou ./alt) dans le route 
-const albumsRoutes: Routes = [
-  {
-  path: '',
-  redirectTo: '/albums',
-  pathMatch: 'full'
-  },
-  {
-  path: 'albums',
-  component: AlbumsComponent
-  },
-  {
-  path: 'login',
-  component: LoginComponent
-  },
-  {
-  path: 'album/:id',
-  component: AlbumDescriptionComponent
-  },
-  {
-  path: 'oc',
-  component: OpenCloseComponent
-  },
-  
-   
 
-  // une chose qu'on fait à la fin des routes , on crée un path qui sera une page 404 note found
-  {path:'**' , component: PageNotFoundComponent},
-  ];
 
 
 @NgModule({
@@ -68,10 +38,10 @@ const albumsRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule, // importez le module
-    //   forRout est une méthode utilisé pour définir les routes à  utiliser dans le modele de routage
-    RouterModule.forRoot(albumsRoutes), // chargement des routes dans l'application
     BrowserAnimationsModule,
     HttpClientModule,
+    AppRoutingModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -27,7 +27,7 @@ export class AlbumDescriptionComponent implements OnInit {
       // console.log(this.album);
       
       
-
+      this.route.snapshot.paramMap.get("albumId")
       console.log(this.route.snapshot.paramMap.get("albumId"));
       const id = this.route.snapshot.params["albumId"];
 

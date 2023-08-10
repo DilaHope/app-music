@@ -1,8 +1,8 @@
 export const environment = {
     production: true,
     numberPage:4,
-    albumUrl:'https://monsite.fr/albums',
-    albumListUrl: 'https://monsite.fr/albumList',
+    albumUrl:'http://localhost:3000/albums',
+    albumListUrl: 'http://localhost:3000/albumList',
    
 };
 
