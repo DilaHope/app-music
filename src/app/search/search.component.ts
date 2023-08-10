@@ -19,15 +19,28 @@ constructor(
 
   onSubmit(form:NgForm) //ici NgForm est un objet qui enregiste les infos que nous renseignons
   {
-   const results : Album[] = this.albumService.search(form.value.word);// ou  console.log( form.value['word'])
-   this.searchAlbums.emit(results)
-   console.log(results);
+   const results = this
+         .albumService.search(form.value.word)
+         .subscribe({
+          next: (alb: Album[]) => {
+            
+           if (alb.length > 0){ 
+            this.searchAlbums.emit(alb);
+          }
+          }
+         });// ou  console.log( form.value['word'])
+  
      
   }
   
 
   onChangeEmit($event:string){
-    const results : Album[] = this.albumService.search( $event);// ou  console.log( form.value['word'])
-   this.searchAlbums.emit(results)
+    const results = this.albumService.search( $event)
+    .subscribe(
+      (alb:Album[]) => {
+
+        this.searchAlbums.emit(alb)
+      }
+    );// ou  console.log( form.value['word'])
   }
 }

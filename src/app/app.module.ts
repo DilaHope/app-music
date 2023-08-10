@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PaginateComponent } from './paginate/paginate.component';
 import { OpenCloseComponent } from './open-close/open-close.component';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import{HttpClientModule}from '@angular/common/http';
  
  
 
@@ -60,7 +62,7 @@ const albumsRoutes: Routes = [
     PageNotFoundComponent,
     PaginateComponent,
     OpenCloseComponent,
-      
+    AudioPlayerComponent
  
   ],
   imports: [
@@ -69,6 +71,7 @@ const albumsRoutes: Routes = [
     //   forRout est une méthode utilisé pour définir les routes à  utiliser dans le modele de routage
     RouterModule.forRoot(albumsRoutes), // chargement des routes dans l'application
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

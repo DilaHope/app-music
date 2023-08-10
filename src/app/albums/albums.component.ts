@@ -6,7 +6,6 @@ import { Album } from '../album';
 import { AlbumDetailsComponent } from '../album-details/album-details.component';
 import { AlbumService } from '../album.service';
 import { fadeInAnimation } from '../animation.module';
-import { ALBUMS } from '../mock-albums';
  
 
 @Component({
@@ -19,7 +18,7 @@ export class AlbumsComponent implements OnInit ,OnInit{
 
   titlePage: string ="Page principale Albms Music";
   title : string = "App-music";
-  albums: Album[] | undefined = undefined;
+  albums!: Album[];
   selectedAlbum!:Album; //Le ! signifie que je suis sûr de lui passer une valeur
   status: string | null = null
   
@@ -35,11 +34,18 @@ export class AlbumsComponent implements OnInit ,OnInit{
   // on use un hook d initialisation
   ngOnInit():void {
     // this.albums = this.albumService.paginate(0,this.albumService.count());
+     this.albumService.paginate(0,this.albumService.paginateNumberPage())
+                       .subscribe({
+                        next: (alb: Album[]) => {
+                          this.albums = alb
+                        }
+                       });
+     ;
     // 2eme methode 
-    this.albums = this.albumService
-      .order((a:Album, b:Album)=> a.duration - b.duration) // lui il ordonne
-      .limit(0,this.albumService.count())// renvoie une sous partie
-      .getAlbums();//récupère les albums 
+    // this.albums = this.albumService
+    //   .order((a:Album, b:Album)=> a.duration - b.duration) // lui il ordonne
+    //   .limit(0,this.albumService.count())// renvoie une sous partie
+    //   .getAlbums();//récupère les albums 
   }
 
   playParent ($event:Album){
@@ -55,6 +61,13 @@ export class AlbumsComponent implements OnInit ,OnInit{
    console.log(this.albums)
   }
   
+
+  onSetPaginate($event: {start:number, end:number}){
+    this.albumService.paginate($event.start,$event.end)
+                      .subscribe({
+                        next: (alb:Album[]) => this.albums=alb
+                      })
+  }
 }
 
 
