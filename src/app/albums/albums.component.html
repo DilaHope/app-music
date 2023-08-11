@@ -52,6 +52,8 @@
         </nav>
 
         <h1 class="fw-semibold pt-">{{ titlePage }}</h1>
+        
+        <app-paginate (setPaginate)="onSetPaginate($event)"></app-paginate>
 
         <ng-container *ngIf="albums&&albums.length; else notfound">
             <div class="card my-2 fw-semibold" *ngFor="let album of albums let i=index ;">
@@ -80,7 +82,7 @@
                 </div>
             </div>
         </ng-template>
-
+        <app-paginate (setPaginate)="onSetPaginate($event)"></app-paginate>
     </div>
 
 </div>

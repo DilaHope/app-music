@@ -15,6 +15,10 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import{HttpClientModule}from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
+import { initial } from 'lodash';
+import { environment } from 'src/environments/environment';
+import { ShareModule } from './share/share.module';
+import { AddAlbumComponent } from './admin/add-album/add-album.component';
  
 
 
@@ -26,22 +30,24 @@ import { AdminModule } from './admin/admin.module';
     AppComponent,
     AlbumsComponent,
     AlbumDetailsComponent,
-    SearchComponent,
     AlbumDescriptionComponent,
+    AudioPlayerComponent,
+    SearchComponent,
     LoginComponent,
     PageNotFoundComponent,
-    PaginateComponent,
+    // PaginateComponent,
     OpenCloseComponent,
-    AudioPlayerComponent
- 
+    
+    
   ],
   imports: [
     BrowserModule,
     FormsModule, // importez le module
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
     AdminModule,
+    AppRoutingModule,
+    ShareModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

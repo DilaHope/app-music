@@ -22,19 +22,20 @@ export class AlbumsComponent implements OnInit ,OnInit{
   selectedAlbum!:Album; //Le ! signifie que je suis sûr de lui passer une valeur
   status: string | null = null
   
-  onSelect(album:Album){
-    this.selectedAlbum = album;
   
-  };
- 
   constructor(
     private albumService: AlbumService
-  ) { console.log(`${this.albumService.count()}albums trouvés`)}
-
+    ) { console.log(`${this.albumService.count()}albums trouvés`)}
+    
+    onSelect(album:Album){
+      this.selectedAlbum = album;
+    
+    };
+    
   // on use un hook d initialisation
   ngOnInit():void {
     // this.albums = this.albumService.paginate(0,this.albumService.count());
-     this.albumService.paginate(0,this.albumService.paginateNumberPage())
+     this.albumService.paginate(0,this.albumService.paginateNumberPage)
                        .subscribe({
                         next: (alb: Album[]) => {
                           this.albums = alb

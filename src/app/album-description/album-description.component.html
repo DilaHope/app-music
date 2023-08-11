@@ -1,9 +1,9 @@
-<p>album-description works!</p>
-<div class="card" *ngIf="album">
+ 
+<div class="card" *ngIf="album" [@fadeInAnimation]>
     <div class="card-header">
         Featured
     </div>
-    <div class="card-body" >
+    <div class="card-body" *ngFor="let tag of album.tags">
         <h5 class="card-title">{{album.title}}</h5>
         <h6>Name: {{album.name}} </h6>
         <p class="card-text"> {{album.description}} </p>
@@ -13,6 +13,6 @@
             <li class="list-inline-item" *ngFor="let tag of album.tags"></li>
           <a class="btn btn-info mx-1"  role="button" *ngFor="let tag of album.tags">{{tag}}</a> <br>
         </ul>
-        <img src="{{album.url}}" width="300">
+        <img *ngIf="album.url"  src="{{album.url}}" width="300" class="rounded mr-auto d-block">
     </div>
 </div>

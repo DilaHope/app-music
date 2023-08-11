@@ -4,6 +4,7 @@ import { Album,List,SortAlbumCallback } from './album';
 // import { ALBUMS, ALBUM_LISTS } from './mock-albums';
 import{HttpClient} from '@angular/common/http';
 import{environment} from 'src/environments/environment';
+import * as _ from 'lodash'
  
 
 @Injectable({
@@ -31,6 +32,7 @@ export class AlbumService {
     return this.http.get<Album[]>(this._albumsUrl).pipe(
     //ordonner les albums par ordre de durée décroissante 
    map((albums: Album[]) => {
+    
     return albums.sort((a:Album, b:Album) => b.duration - a.duration);
    })
     ); //
@@ -77,9 +79,9 @@ export class AlbumService {
   
 
   paginate (start:number, end : number):Observable<Album[]>{
-    return this.http.get<Album[]>(this._albumListsUrl).pipe(
+    return this.http.get<Album[]>(this._albumsUrl).pipe(
       map(
-        (albums) => albums.sort((a,b) => b.duration - a.duration)
+        (albums:Album[]) => albums.sort((a,b) => b.duration - a.duration)
                           .slice(start,end)
         )
     );

@@ -11,7 +11,7 @@ import { fadeInAnimation } from '../animation.module';
   animations:[fadeInAnimation],
 })
 export class AlbumDescriptionComponent implements OnInit {
-  album: Album | undefined;
+  album!: Album;
   constructor(
     private route :ActivatedRoute,
     private aS: AlbumService // récupérez le service
@@ -31,10 +31,11 @@ export class AlbumDescriptionComponent implements OnInit {
       console.log(this.route.snapshot.paramMap.get("albumId"));
       const id = this.route.snapshot.params["albumId"];
 
-      this.aS.getAlbum(id)?.subscribe(album =>{
+      this.aS.getAlbum(this.route.snapshot.params["id"])?.subscribe(album =>{
         this.album = album;
       })
       
       
   }
 }
+

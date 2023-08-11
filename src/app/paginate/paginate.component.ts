@@ -35,7 +35,7 @@ export class PaginateComponent implements OnInit {
     private albumService: AlbumService,
   ) {
     // this.perPage = environment.numberPage
-    this.perPage = this.albumService.paginateNumberPage();
+    this.perPage = this.albumService.paginateNumberPage;
 
   }
 
