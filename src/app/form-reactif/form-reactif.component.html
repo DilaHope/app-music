@@ -1,0 +1,45 @@
+<p>form-template works!</p>
+
+<p>Name: {{musicForm.get("name")?.value}} </p>
+<p>Auteur: {{musicForm.get("auteur")?.value}} </p>
+<p>Name: {{musicForm.get("style")?.value}} </p>
+
+<div class="container-sm">
+    <form [formGroup]="musicForm" (ngSubmit)="onSubmit()">
+
+
+        <div class="form-group">
+            <label for="ame">Nom de l'album :</label>
+            <input type="text" class="form-control" id="ame" formControlName="name">
+            <div class="alert alert-danger" *ngIf=" name?.invalid && (name?.pristine || name?.touched )">
+                <p *ngIf="name?.errors?.['required']">Le nom de l'album est requis</p>
+                <p *ngIf="name?.errors?.['minLength']">Le nom de l'album doit contenir {{name?.errors?.['minLength']?.["requiredLength"]}} caractère(s).Vous en avez fournis {{name?.errors?.['minLength']?.[ "actualLength" ]}}</p>
+                <p>{{ name?.errors | json}}</p>
+            </div>
+            <!-- name?.touched signifie if (name=== nul) { }else {name.touched} -->
+        </div>
+
+        <div class="form-group">
+            <label for="auteur">Auteur</label>
+            <input type="text" class="form-control" id="auteur" formControlName="auteur" required>
+            <div class="alert alert-danger" *ngIf="name?.touched && (name?.pristine || name?.invalid)" >L'auteur est requis</div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="style">Style de musique :</label>
+            <select id="style" class="form-control" formControlName="style">
+                <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+            </select>
+
+        </div>
+            <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+
+    </form>
+
+    <!-- input sans le formgroup ou sans le formmulaire -->
+    <!-- <p><input type="text" placeholder="Search" [formControl] ="search"></p> -->
+    <!-- <p>Search " {{search.value}} "</p> -->
+
+</div>

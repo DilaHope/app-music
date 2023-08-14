@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
@@ -19,6 +19,8 @@ import { initial } from 'lodash';
 import { environment } from 'src/environments/environment';
 import { ShareModule } from './share/share.module';
 import { AddAlbumComponent } from './admin/add-album/add-album.component';
+import { FormTemplateComponent } from './form-template/form-template.component';
+import { FormReactifComponent } from './form-reactif/form-reactif.component';
  
 
 
@@ -37,12 +39,15 @@ import { AddAlbumComponent } from './admin/add-album/add-album.component';
     PageNotFoundComponent,
     // PaginateComponent,
     OpenCloseComponent,
+    FormTemplateComponent,
+    FormReactifComponent,
     
     
   ],
   imports: [
     BrowserModule,
     FormsModule, // importez le module
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AdminModule,
