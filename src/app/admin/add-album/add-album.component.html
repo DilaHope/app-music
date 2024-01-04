@@ -45,7 +45,16 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add</button>
+        <div formArrayName="tags"><br>
+            <h2>Etiquettes de l'albums</h2> <br>
+            <button type="button" (click)="addTag()">+ Ajouter une étiqutte</button> <br>
+            <div *ngFor="let tag of tags.controls; let i = index" class="form-group"><br>
+                <label for="tag-{{i}}">Tag :</label><br>
+                <input [formControlName]="i" id="tag-{{i}} " type="text" class="form-control" style="width: 300px;"> <br>
+            </div>
+        </div><br>
+
+        <button  [disabled]="albumForm.invalid" type="submit" class="btn btn-primary">Add</button><br>
 
     </form>
 </div>

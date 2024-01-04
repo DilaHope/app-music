@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AlbumService } from 'src/app/album.service';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-album',
@@ -9,7 +9,9 @@ import { AlbumService } from 'src/app/album.service';
 })
 export class AddAlbumComponent implements OnInit {
   albumForm!: FormGroup;
-  constructor(private fb: FormBuilder, private aS: AlbumService) { };
+  constructor(
+    private fb: FormBuilder, 
+    private router:Router) { };
   ngOnInit() {
     this.albumForm = this.fb.group({
       id: '',
@@ -37,6 +39,9 @@ export class AddAlbumComponent implements OnInit {
       description: ['', [
         Validators.required
       ]],
+       tags:this.fb.array([this.fb.control('')]),
+
+     // tags:new FormArray([new FormControl('')]), //ecriture pour ajout des tags au formulaire,ecriture detaillé
 
       status: 'off',
     });
@@ -58,9 +63,22 @@ export class AddAlbumComponent implements OnInit {
   get description(){
     return this.albumForm.get('description')
   };
+  get tags(){
+    return this.albumForm.get('tags') as FormArray 
+  };
 
   onSubmit() {
-    console.log(this.albumForm.value)
+    console.log(this.albumForm.value);
+    //Rediriger sur la page admin
+    this.router.navigate(['/admin']),{
+      queryParams: {
+        message: "album ajouté avec succès",
+        model:"text-davinci-002-render-sha"
+      }}
+  }
+
+  addTag(){
+   this.tags.push(this.fb.control(''));
   }
 }
 
